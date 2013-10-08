@@ -60,7 +60,7 @@ module KnifeSoloDataBag
         json_string = JSON.parse(File.read(config[:json_file]))
         item = Chef::DataBagItem.from_hash bag_item_content(json_string)
       else
-        create_object() do |output|
+        create_object({'id' => item_name}, "data_bag_item[#{item_name}]") do |output|
           item = Chef::DataBagItem.from_hash bag_item_content(output)
         end
       end
